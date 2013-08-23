@@ -23,7 +23,7 @@
  	<div class="box">
  		<h3>Work Experience</h3>
  		{% for job in jobs %}
- 			<div class="job" style="border-color: rgb{{job.color}}">
+ 			<div class="job" style="border-color: {{job.color}}">
 	 			<p>
 	 				<b>{{job.title}} - {{job.employer}}</b><br>
 	 				<b>{{job.start_date_formatted}} - {{job.finish_date_formatted}}</b><br>
@@ -36,7 +36,7 @@
  			<div class="dates" style="margin-left: {{year.percent}}%">{{year.year}}</div>
  			{% endfor %}
  			{% for job_length in job_lengths %}
- 				<span class="stretchbar" style="width: {{job_length.employment_length_percent}}%; margin-left: {{job_length.start_length_percent}}%; background-color: rgb{{job_length.color}};"></span>
+ 				<span class="stretchbar" style="width: {{job_length.employment_length_percent}}%; margin-left: {{job_length.start_length_percent}}%; background-color: {{job_length.color}};"></span>
  			{% endfor %}
  			
  		</div>

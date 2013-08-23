@@ -1,9 +1,10 @@
 from jinja2 import Template
 from datetime import date
 import time
-from random import random
 import json
 import math
+import hashlib
+import webcolors
 
 JSON_DATE_FORMAT = "%Y, %m, %d"
 
@@ -18,15 +19,19 @@ def parse_json(filename):
 		data_dict = json.load(j)
 	print data_dict
 
+def hash_color_tint(string, rgb_tint):
+	h = hashlib.new("sha1")
+	h.update(string)
+	hex_color = "#{}".format(str(h.hexdigest()[:6]))
 
-def random_color_tinted(r, g, b):
+	rgb_color = webcolors.hex_to_rgb(hex_color)
 
-	def color_value_tinted(v):
-		return (int(random() * 255) + v) / 2
+	def avg2(a, b):
+		return (a + b) / 2
 
-	c = color_value_tinted
+	rgb_color_tinted = (avg2(rgb_color[0],rgb_tint[0]), avg2(rgb_color[1], rgb_tint[1]), avg2(rgb_color[2], rgb_tint[2]))
 
-	return (c(r), c(g), c(b))
+	return webcolors.rgb_to_hex(rgb_color_tinted)
 
 
 def open_and_read(filename):
@@ -54,7 +59,7 @@ class Employment(object):
 		self.start_date = start_date
 		self.finish_date = finish_date
 		self.start_date_formatted = tidy_date(self.start_date)
-		self.color = random_color_tinted(230, 230, 230)
+		self.color = hash_color_tint(self.title + self.employer, (230, 230, 230))
 
 		if self.finish_date is not None:
 			self.finish_date_formatted = tidy_date(self.finish_date)
