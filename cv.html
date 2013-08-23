@@ -1,5 +1,5 @@
 <head>
-	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300' rel='stylesheet' type='text/css'>
 	<link href="styling.css" type="text/css" rel="stylesheet" />
 </head>
 <body class="page">
@@ -32,9 +32,13 @@
  			</div>
  		{% endfor %}
  		<div class="bar">
- 			{% for job_length in job_lengths %}
- 				<span style="width: {{job_length.employment_length_percent}}%; margin-left: {{job_length.start_length_percent}}%; background-color: rgb{{job_length.color}};"></span>
+ 			{% for year in years %}
+ 			<div class="dates" style="margin-left: {{year.percent}}%">{{year.year}}</div>
  			{% endfor %}
+ 			{% for job_length in job_lengths %}
+ 				<span class="stretchbar" style="width: {{job_length.employment_length_percent}}%; margin-left: {{job_length.start_length_percent}}%; background-color: rgb{{job_length.color}};"></span>
+ 			{% endfor %}
+ 			
  		</div>
  	</div>
 </body>

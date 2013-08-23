@@ -3,6 +3,7 @@ from datetime import date
 import time
 from random import random
 import json
+import math
 
 JSON_DATE_FORMAT = "%Y, %m, %d"
 
@@ -78,6 +79,10 @@ class EmploymentLength(object):
 		self.employment_length = employment.get_job_length()
 		self.color = employment.color
 
+class YearMarker(object):
+	def __init__(self, year, percent):
+		self.year = year
+		self.percent = percent
 
 def main():
 	output_filename = "test.html"
@@ -87,7 +92,7 @@ def main():
 	details = []
 	jobs = []
 
-	with open("test.json") as j:
+	with open("data.json") as j:
 		json_data = json.load(j)
 		for key in json_data.keys():
 			
@@ -120,12 +125,20 @@ def main():
 
 	total_days = (date.today() - first_day).days
 
+	years = []
+
+	year_count = int(math.ceil(total_days / 365.25))
+
+	for year in range(first_day.year + 1, first_day.year + year_count + 1):
+		years.append(YearMarker(year, (date(year, 1, 1) - first_day).days / float(total_days) * 100))
+
+
 	for job_length in job_lengths:
 		job_length.employment_length_percent = job_length.employment_length / float(total_days) * 100
 		job_length.start_length_percent = (job_length.start_date - first_day).days / float(total_days) * 100
 
 	with open(output_filename, 'w') as o:
-		o.write(template.render(details=details, profile=profile, jobs=jobs, job_lengths=job_lengths))
+		o.write(template.render(details=details, profile=profile, jobs=jobs, job_lengths=job_lengths, years=years))
 
 	print "Output saved to {}".format(output_filename)
 
