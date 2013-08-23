@@ -1,12 +1,34 @@
-h1
+h1, h2
 {
 	text-align: center;
+	margin-top: 0px;
+}
+
+h2
+{
+	color: #2a2a2a;
+	margin-top: -18px;
+}
+
+p
+{
+	margin-left: 1em;
+	margin-right: 1em;
+	color: #202020;
 }
 
 body
 {
 	margin-left: auto;
 	margin-right: auto;
-	width: 30em;
+	width: 40em;
 	font-family: Source Sans Pro;
+}
+
+.background
+{
+	background-color: #eeeeee;
+	height: 100%;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
 }

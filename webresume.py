@@ -1,11 +1,14 @@
-import markdown
+from jinja2 import Template
+
+output_filename = "test.html"
 
 def open_and_read(filename):
 	with open(filename) as f:
 		return f.read()
 
-md = markdown.markdown(open_and_read("test.md"))
-head = open_and_read("head.html")
+template = Template(open_and_read("cv.html"))
 
-with open("test.html", 'w') as o:
-	o.write("{}\n<body>\n{}\n</body>".format(head, md))
+with open(output_filename, 'w') as o:
+	o.write(template.render(test="nifty as fuck", lorem=open_and_read("lorem.txt").split('\n')))
+
+print "Output saved to {}".format(output_filename)
