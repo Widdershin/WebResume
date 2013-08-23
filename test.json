@@ -1,0 +1,45 @@
+{
+	"details":{
+		"Name": "John Doe",
+		"D.O.B": "1/1/1990",
+		"Address": "123 Fake Street, Fakeville, USA",
+		"Mobile Phone": "555 - 5555",
+		"Email Address": "foo@example.com"
+	},
+	"profile": {
+		"text": "I am the very model of a modern Major-General\nI've information vegetable, animal, and mineral\nI know the kings of England, and I quote the fights historical\nFrom Marathon to Waterloo, in order categorical"
+	},
+	
+	"jobs": [
+		{
+			"title": "l33t Hacker",
+			"employer": "xXxPWNClanxXx",
+			"description": "My job involved pwning the noobs, day in, day out.",
+			"start_date": "2011, 9, 13",
+			"finish_date": "2012, 3, 1"
+		},
+
+		{
+			"title": "Doctor",
+			"employer": "Sacred Heart Medical",
+			"description": "My responsibilites included looking after patients, teaching med students and writing research reports.",
+			"start_date": "2012, 3, 1",
+			"finish_date": "2012, 8, 15"
+		},
+
+		{
+			"title": "Fighter Pilot",
+			"employer": "United States Air Force",
+			"description": "I spent my time shooting down shooting down bad guys, and hunting whistle-blowers.",
+			"start_date": "2012, 6, 11",
+			"finish_date": "2013, 1, 4"
+		},
+
+		{
+			"title": "Developer and Stack Engineer",
+			"employer": "Github",
+			"description": "I wish.",
+			"start_date": "2013, 3, 4"
+		}
+	]
+}

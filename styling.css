@@ -7,13 +7,20 @@ h1, h2
 h2
 {
 	color: #2a2a2a;
-	margin-top: -18px;
+	margin-top: -20px;
+	margin-bottom: 0px;
+}
+
+h3
+{
+	margin-left: 1.6em;
+	margin-right: 1em;
 }
 
 p
 {
-	margin-left: 1em;
-	margin-right: 1em;
+	margin-left: 2em;
+	margin-right: 2em;
 	color: #202020;
 }
 
@@ -21,14 +28,60 @@ body
 {
 	margin-left: auto;
 	margin-right: auto;
-	width: 40em;
+	width: 700px;
 	font-family: Source Sans Pro;
 }
 
-.background
+
+.box
 {
 	background-color: #eeeeee;
-	height: 100%;
-	border-radius: 15px;
-	-moz-border-radius: 15px;
+	height: auto;
+
+	border-radius: 10px;
+
+	padding-top:5px;
+	padding-bottom: 10px;
+	margin-bottom: 2%;
+	position: relative;
+}
+
+
+.page
+{
+	background-color: #202020;
+}
+
+.header
+{
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1.5em;
+}
+
+.bar { 
+	position: relative;
+	background: #555;
+	border-radius: 25px;
+	padding: 10px;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.bar > span {
+	display: block;
+	height: 1em;
+ 	border-radius: 20px;
+	background-color: rgb(43,194,83);
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 10px;
+	top: 5px;
+}
+
+.job
+{
+	border-style: none none none solid;
+	border-width: 10px;
 }
