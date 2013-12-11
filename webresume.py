@@ -59,7 +59,7 @@ class Employment(object):
 		self.start_date = start_date
 		self.finish_date = finish_date
 		self.start_date_formatted = tidy_date(self.start_date)
-		self.color = hash_color_tint(self.title + self.employer, (230, 230, 230))
+		self.color = hash_color_tint(self.title + self.employer, (215, 215, 215))
 
 		if self.finish_date is not None:
 			self.finish_date_formatted = tidy_date(self.finish_date)
@@ -97,7 +97,7 @@ def main():
 	details = []
 	jobs = []
 
-	with open("data.json") as j:
+	with open("test.json") as j:
 		json_data = json.load(j)
 		for key in json_data.keys():
 			
@@ -134,7 +134,7 @@ def main():
 
 	year_count = int(math.ceil(total_days / 365.25))
 
-	for year in range(first_day.year + 1, first_day.year + year_count + 1):
+	for year in range(first_day.year + 1, first_day.year + year_count):
 		years.append(YearMarker(year, (date(year, 1, 1) - first_day).days / float(total_days) * 100))
 
 
