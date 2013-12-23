@@ -54,7 +54,7 @@ body
 
 .header
 {
-	width: 50%;
+	width: 60%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 1.5em;
@@ -97,4 +97,16 @@ body
 {
 	border-style: none none none solid;
 	border-width: 10px;
+}
+
+.projects
+{
+	padding: 2em;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+iframe
+{
+	margin-bottom: -1em;
 }

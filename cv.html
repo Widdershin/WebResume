@@ -1,44 +1,60 @@
-<head>
-	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300' rel='stylesheet' type='text/css'>
-	<link href="styling.css" type="text/css" rel="stylesheet" />
-</head>
-<body class="page">
-	<div class="box header">
-	 	<h1>Curriculum Vitae</h1>
-	 	<h2>{{details[2].detail}}</h2>
-	 </div>
-	 <div class="box">
-	 	<h3>Personal Details</h3>
-	 	<p>
-	 	{% for detail in details %}
-	 		<b>{{detail.label}}:</b> {{detail.detail}}<br>
-	 	{% endfor %}
-	 	</p>
- 	</div>
- 	<div class="box">
- 		<h3>Profile</h3>
- 		<p>{{profile}}</p>
- 	</div>
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300' rel='stylesheet' type='text/css'>
+		<link href="styling.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body class="page">
+		<div class="box header">
+		 	<h1>Curriculum Vitae</h1>
+		 	<h2>{{details[2].detail}}</h2>
+		 </div>
+		 <div class="box">
+		 	<h3>Personal Details</h3>
+		 	<table>
+		 	<col width="150">
+  			<col width="600">
+		 	{% for detail in details %}
+		 	<tr>
+		 		<td>{{detail.label}}:</td> <td>{{detail.detail}}</td>
+		 	</tr>
+		 	{% endfor %}
+		 	</table>
+	 	</div>
+	 	<div class="box">
+	 		<h3>Profile</h3>
+	 		<p>{{profile}}</p>
+	 	</div>
 
- 	<div class="box">
- 		<h3>Work Experience</h3>
- 		{% for job in jobs %}
- 			<div class="job" style="border-color: {{job.color}}">
-	 			<p>
-	 				<b>{{job.title}} - {{job.employer}}</b><br>
-	 				<b>{{job.start_date_formatted}} - {{job.finish_date_formatted}}</b><br>
-	 				{{job.description}}
-	 			</p>
- 			</div>
- 		{% endfor %}
- 		<div class="bar">
- 			{% for year in years %}
- 			<div class="dates" style="margin-left: {{year.percent}}%">{{year.year}}</div>
- 			{% endfor %}
- 			{% for job_length in job_lengths %}
- 				<span class="stretchbar" style="width: {{job_length.employment_length_percent}}%; margin-left: {{job_length.start_length_percent}}%; background-color: {{job_length.color}};"></span>
- 			{% endfor %}
- 			
- 		</div>
- 	</div>
-</body>
+	 	<div class="box">
+	 		<h3>Work Experience</h3>
+	 		{% for job in jobs %}
+	 			<div class="job" style="border-color: {{job.color}}">
+		 			<p>
+		 				<b>{{job.title}} - {{job.employer}}</b><br>
+		 				<b>{{job.start_date_formatted}} - {{job.finish_date_formatted}}</b><br>
+		 				{{job.description}}
+		 			</p>
+	 			</div>
+	 		{% endfor %}
+	 		<div class="bar">
+	 			{% for year in years %}
+	 			<div class="dates" style="margin-left: {{year.percent}}%">{{year.year}}</div>
+	 			{% endfor %}
+	 			{% for job_length in job_lengths %}
+	 				<span class="stretchbar" style="width: {{job_length.employment_length_percent}}%; margin-left: {{job_length.start_length_percent}}%; background-color: {{job_length.color}};"></span>
+	 			{% endfor %}
+	 			
+	 		</div>
+	 	</div>
+	 	<div class="box">
+	 		<h3>Projects</h3>
+	 		<div class="projects">
+		 		<iframe src="http://lab.lepture.com/github-cards/card.html?user=Widdershin" frameborder="0" scrolling="0" width="100%" height="200" allowtransparency></iframe>
+		 		{% for project in projects %}
+		 			<iframe src="http://lab.lepture.com/github-cards/card.html?user=Widdershin&repo={{project}}" frameborder="0" scrolling="0" width="100%" height="200" allowtransparency></iframe>
+		 		{% endfor %}		 	
+	 		</div>
+	 		<p><a href="https://github.com/lepture/github-cards">Github Embed Cards by lepture</a></p>
+	 	</div>
+	</body>
+</html>
