@@ -1,23 +1,24 @@
 from jinja2 import Template
 from datetime import date
+from collections import namedtuple, OrderedDict
 import time
-import json
 import math
 import hashlib
 import webcolors
-from collections import namedtuple
+import yaml
 
 
 DATE_FORMAT = "%Y, %m, %d"
+
 
 def parse_date(string, format):
     raw_time = time.strptime(string, format)
     return date(raw_time.tm_year, raw_time.tm_mon, raw_time.tm_mday)
 
 
-def parse_json(filename):
+def parse_yaml(filename):
     with open(filename) as j:
-        data_dict = json.load(j)
+        data_dict = yaml.load_all(j)
     print(data_dict)
 
 
@@ -50,11 +51,7 @@ def tidy_date(date):
     return date.strftime("%B %Y")
 
 
-class PersonalDetail(object):
-
-    def __init__(self, label, detail):
-        self.label = label
-        self.detail = detail
+PersonalDetail = namedtuple("PersonalDetail", ["label", "detail"])
 
 
 class Employment(object):
@@ -105,29 +102,32 @@ def main():
 
     template = Template(open_and_read("cv.html"))
 
-    details = []
+    details = OrderedDict()
     jobs = []
 
-    with open("details.json") as j:
-        json_data = json.load(j)
+    with open("details.yaml") as details_file:
+        data = yaml.load(details_file)
 
-        for k, v in json_data["details"].items():
-            details.append(PersonalDetail(k, v))
+        for item in data["details"]:
+            k, v = item.items()[0]
 
-        profile = json_data["profile"]['text'].replace('\n', '<br>')
+            details[k] = v
 
-    with open("jobs.json") as j:
-        json_data = json.load(j)
-        for job in json_data["jobs"]:
 
-            finish_date = None
-            if "finish_date" in job:
-                finish_date = parse_date(
-                    job["finish_date"], DATE_FORMAT)
+        #profile = json_data["profile"]['text'].replace('\n', '<br>')
 
-            jobs.append(Employment(job["title"], job["employer"],
-                        parse_date(job["start_date"], DATE_FORMAT),
-                        job["description"], finish_date))
+    # with open("jobs.json") as j:
+    #     yaml_data = yaml.load_all(j)
+    #     for job in yaml_data["jobs"]:
+
+    #         finish_date = None
+    #         if "finish_date" in job:
+    #             finish_date = parse_date(
+    #                 job["finish_date"], DATE_FORMAT)
+
+    #         jobs.append(Employment(job["title"], job["employer"],
+    #                     parse_date(job["start_date"], DATE_FORMAT),
+    #                     job["description"], finish_date))
 
     job_lengths = []
     for job in jobs:
@@ -150,13 +150,17 @@ def main():
                        float(total_days) * 100))
 
     for job_length in job_lengths:
-        job_length.employment_length_percent = job_length.employment_length / \
-            float(total_days) * 100
+
+        job_length.employment_length_percent = (
+            job_length.employment_length / float(total_days) * 100
+        )
+
         job_length.start_length_percent = (
-            job_length.start_date - first_day).days / float(total_days) * 100
+            job_length.start_date - first_day
+        ).days / float(total_days) * 100
 
     with open(output_filename, 'w') as o:
-        o.write(template.render(details=details, profile=profile,
+        o.write(template.render(details=details, profile="blah",
                 jobs=jobs, job_lengths=job_lengths, years=years,
                 projects=["WebUI", "fuckitdb", "Tuara"]))
 

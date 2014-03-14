@@ -1,4 +1,4 @@
 WebResume
 =========
 
-WebResume lets you build CVs or Resumes from Markdown, CSS and Python
+WebResume lets you build CVs or Resumes from Jinja Templates, CSS and Python

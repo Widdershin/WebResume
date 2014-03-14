@@ -6,16 +6,15 @@
 	<body class="page">
 		<div class="box header">
 		 	<h1>Curriculum Vitae</h1>
-		 	<h2>{{details[2].detail}}</h2>
 		 </div>
 		 <div class="box">
 		 	<h3>Personal Details</h3>
 		 	<table>
 		 	<col width="150">
   			<col width="600">
-		 	{% for detail in details %}
+		 	{% for k, v in details.items() %}
 		 	<tr>
-		 		<td>{{detail.label}}:</td> <td>{{detail.detail}}</td>
+		 		<td>{{k}}:</td> <td>{{v}}</td>
 		 	</tr>
 		 	{% endfor %}
 		 	</table>
